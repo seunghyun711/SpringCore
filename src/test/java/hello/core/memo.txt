@@ -42,3 +42,11 @@
 AppConfig에서 memberService빈에서 memberRepository를 호출하고, orderService빈에서 memberRepository를 호출한다. 이렇게 각각 다른 2개의
 memberRepository가 호출되는 것 처럼 보이고, 싱글톤이 깨지는 것 같다. 하지만 확인해보면 이 2개의 memberRepository는 모두 같은 인스턴스이다.
 
+<Configuration, 바이트코드>
+@Configuration을 통해 @Bean으로 스프링 빈으로 등록하면 바이트 코드를 조작하는 CGLIB를 사용하여 AppConfig를 상속받은 임의의 다른 클래스르 만들고,
+이 임의의 클래스를 스프링 빈으로 등록한다. 이 임의의 클래스가 싱글톤으로 보장되도록 한다.
+-> Bean이 붙은 메서드 마다 이미 스프링 빈이 존재하면 존재하는 빈을 반환하고, 스프링 빈이 없다면 새로 생성해서 스프링 빈으로 등록하고 다음에 사용할 때
+생성해놓은 빈을 반환한다. 따라서 싱글톤이 보장된다.
+@Configuration을 안 붙여도 스프링 컨테이너에 빈으로 등록이 된다. 하지만 바이트 코드를 조작하는 CGLIB를 기술사용하지 않고, 순수 AppConfig로 스프링 빈에
+등록된다. 이렇게 되면 싱글톤을 보장하지 않는다.
+
