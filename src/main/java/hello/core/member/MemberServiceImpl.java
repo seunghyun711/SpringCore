@@ -1,5 +1,8 @@
 package hello.core.member;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
     // 가입하고 회원 찾으려면 MemberRepository인터페이스가 필요하다.
