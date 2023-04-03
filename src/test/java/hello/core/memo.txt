@@ -50,3 +50,10 @@ memberRepository가 호출되는 것 처럼 보이고, 싱글톤이 깨지는 �
 @Configuration을 안 붙여도 스프링 컨테이너에 빈으로 등록이 된다. 하지만 바이트 코드를 조작하는 CGLIB를 기술사용하지 않고, 순수 AppConfig로 스프링 빈에
 등록된다. 이렇게 되면 싱글톤을 보장하지 않는다.
 
+<ComponentScan>
+@Component가 붙은 모든 클래스를 스프링 빈으로 등록한다.
+
+<@Autowired>
+생성자에 @Autowired가 붙으면 스프링 컨테이너가 자동으로 스프링 빈을 찾아서 주입한다.
+ac.getBean(MemberRepository.class) 같은 역할이라 생각하면 된다.
+
